@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tcc.aquaplay.GameMain;
 
 import helper.GameInfo;
+import houses.HouseController;
 
 public class GamePlay implements Screen {
 
@@ -24,6 +25,8 @@ public class GamePlay implements Screen {
 
     private World world;
 
+    private HouseController houseController;
+
     public GamePlay(GameMain game) {
         this.game = game;
 
@@ -33,6 +36,8 @@ public class GamePlay implements Screen {
         gameViewport = new StretchViewport(GameInfo.WIDTH,GameInfo.HEIGH,mainCamera);
 
         world = new World(new Vector2(0,0),true);
+
+        houseController = new HouseController(world);
 
         createBackground();
 
@@ -59,7 +64,10 @@ public class GamePlay implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.getBatch().begin();
+
         drawBackgound();
+        houseController.drawHouse(game.getBatch(),GameInfo.COORDINATE_A,GameInfo.COORDINATE_1);
+        houseController.drawHouse(game.getBatch(),GameInfo.COORDINATE_7,GameInfo.COORDINATE_1);
         game.getBatch().end();
 
         game.getBatch().setProjectionMatrix(mainCamera.combined);
