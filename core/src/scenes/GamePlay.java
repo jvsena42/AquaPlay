@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tcc.aquaplay.GameMain;
 
 import helper.GameInfo;
-import houses.HouseController;
+import elements.ElementsController;
 
 public class GamePlay implements Screen {
 
@@ -25,7 +25,7 @@ public class GamePlay implements Screen {
 
     private World world;
 
-    private HouseController houseController;
+    private ElementsController elementsController;
 
     public GamePlay(GameMain game) {
         this.game = game;
@@ -37,7 +37,7 @@ public class GamePlay implements Screen {
 
         world = new World(new Vector2(0,0),true);
 
-        houseController = new HouseController(world);
+        elementsController = new ElementsController(world);
 
         createBackground();
 
@@ -66,8 +66,10 @@ public class GamePlay implements Screen {
         game.getBatch().begin();
 
         drawBackgound();
-        houseController.drawHouse(game.getBatch(),GameInfo.COORDINATE_A,GameInfo.COORDINATE_1);
-        houseController.drawHouse(game.getBatch(),GameInfo.COORDINATE_7,GameInfo.COORDINATE_1);
+        elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_2,GameInfo.COORDINATE_A);
+        elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_6,GameInfo.COORDINATE_A);
+        elementsController.drawHouse(game.getBatch(),"watertank",GameInfo.COORDINATE_4,GameInfo.COORDINATE_F);
+        elementsController.drawHouse(game.getBatch(),"cano_topo",GameInfo.COORDINATE_4,GameInfo.COORDINATE_E);
         game.getBatch().end();
 
         game.getBatch().setProjectionMatrix(mainCamera.combined);
