@@ -2,6 +2,7 @@ package pipes;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Pipe extends Sprite {
@@ -12,10 +13,11 @@ public class Pipe extends Sprite {
     private float length;
     private String pipeType;
 
-    public Pipe(World world, String pipeType){
+
+    public Pipe(World world, String pipeType) {
         super(new Texture("Pipes/"+pipeType+".png"));
-        this.world = world;
         this.pipeType = pipeType;
+        this.world = world;
     }
 
     public float getDiameter() {
@@ -36,6 +38,10 @@ public class Pipe extends Sprite {
 
     public String getPipeType() {
         return this.pipeType;
+    }
+
+    public void setSpritePosition(Float x, Float y){
+        setPosition(x-getWidth()/2f,y-getHeight());
     }
 
 }

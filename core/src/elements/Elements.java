@@ -16,7 +16,7 @@ public class Elements extends Sprite {
     }
 
     public void setSpritePosition(Float x, Float y){
-        setPosition(x-getWidth()/2f,y+10f);
+        setPosition(x-getWidth()/2f,y);
     }
 
     public String getHouseType(){
