@@ -14,20 +14,23 @@ import com.tcc.aquaplay.GameMain;
 
 import helper.GameInfo;
 import elements.ElementsController;
-import pipes.PipeController;
+import pipes.Pipe;
 
 public class GamePlay implements Screen {
 
     private GameMain game;
     private Sprite backGround;
 
+    private World world;
+
+
     private OrthographicCamera mainCamera;
     private Viewport gameViewport;
 
-    private World world;
 
     private ElementsController elementsController;
-    private PipeController pipeController;
+
+    private Pipe[] pipe;
 
     public GamePlay(GameMain game) {
         this.game = game;
@@ -40,9 +43,8 @@ public class GamePlay implements Screen {
         world = new World(new Vector2(0,0),true);
 
         elementsController = new ElementsController(world);
-        pipeController = new PipeController(world);
 
-
+        createPipes();
         createBackground();
 
     }
@@ -54,6 +56,25 @@ public class GamePlay implements Screen {
 
     public void drawBackgound(){
         game.getBatch().draw(backGround,backGround.getX(),backGround.getY());
+    }
+
+    public void createPipes(){
+
+        pipe = new Pipe[3];
+        for (int i=0;i<3;i++){
+            pipe[i] = new Pipe(world,"pipe"+i);
+        }
+
+    }
+
+    public void drawPipe(){
+        pipe[0].setSpritePosition(GameInfo.COORDINATE_4,GameInfo.COORDINATE_B);
+        pipe[1].setSpritePosition(GameInfo.COORDINATE_6,GameInfo.COORDINATE_C);
+        pipe[2].setSpritePosition(GameInfo.COORDINATE_1,GameInfo.COORDINATE_D);
+
+        for (int i=0;i<3;i++){
+            game.getBatch().draw(pipe[i],pipe[i].getX(),pipe[i].getY());
+        }
     }
 
     @Override
@@ -73,8 +94,7 @@ public class GamePlay implements Screen {
         elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_2,GameInfo.COORDINATE_A);
         elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_6,GameInfo.COORDINATE_A);
         elementsController.drawHouse(game.getBatch(),"watertank",GameInfo.COORDINATE_4,GameInfo.COORDINATE_F);
-        pipeController.drawPipe(game.getBatch(),"cano_topo",GameInfo.COORDINATE_4,GameInfo.COORDINATE_F);
-
+        drawPipe();
         game.getBatch().end();
 
         game.getBatch().setProjectionMatrix(mainCamera.combined);
