@@ -68,13 +68,13 @@ public class GamePlay implements Screen {
     }
 
     public void drawPipe(){
-        pipe[0].setSpritePosition(GameInfo.COORDINATE_4,GameInfo.COORDINATE_B);
-        pipe[1].setSpritePosition(GameInfo.COORDINATE_6,GameInfo.COORDINATE_C);
-        pipe[2].setSpritePosition(GameInfo.COORDINATE_1,GameInfo.COORDINATE_D);
 
-        for (int i=0;i<3;i++){
-            game.getBatch().draw(pipe[i],pipe[i].getX(),pipe[i].getY());
-        }
+        pipe[1].setSpritePositionV(GameInfo.COORDINATE_4,GameInfo.COORDINATE_E);
+        pipe[2].setSpritePositionH(GameInfo.COORDINATE_4,GameInfo.COORDINATE_E);
+
+        game.getBatch().draw(pipe[1],pipe[1].getX(),pipe[1].getY(),pipe[1].getWidth(),GameInfo.COORDINATE_A);
+        game.getBatch().draw(pipe[2],pipe[2].getX(),pipe[2].getY(),GameInfo.COORDINATE_1,pipe[2].getHeight());
+
     }
 
     @Override
@@ -91,10 +91,10 @@ public class GamePlay implements Screen {
         game.getBatch().begin();
 
         drawBackgound();
-        elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_2,GameInfo.COORDINATE_A);
-        elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_6,GameInfo.COORDINATE_A);
+        elementsController.drawHouse(game.getBatch(),"house1",GameInfo.COORDINATE_5,GameInfo.COORDINATE_E);
         elementsController.drawHouse(game.getBatch(),"watertank",GameInfo.COORDINATE_4,GameInfo.COORDINATE_F);
         drawPipe();
+
         game.getBatch().end();
 
         game.getBatch().setProjectionMatrix(mainCamera.combined);
