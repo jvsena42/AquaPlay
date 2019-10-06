@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.World;
 
+import helper.GameInfo;
+
 public class Pipe extends Sprite {
 
     private World world;
@@ -40,8 +42,12 @@ public class Pipe extends Sprite {
         return this.pipeType;
     }
 
-    public void setSpritePosition(Float x, Float y){
-        setPosition(x-getWidth()/2f,y-getHeight());
+    public void setSpritePositionV(Float x, Float y){
+        setPosition(x-getWidth()/2f,y);
+    }
+
+    public void setSpritePositionH(Float x, Float y){
+        setPosition(x,y-getHeight()/2);
     }
 
 }

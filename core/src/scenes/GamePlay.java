@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tcc.aquaplay.GameMain;
 
+import helper.Calc;
 import helper.GameInfo;
 import elements.ElementsController;
 import pipes.Pipe;
@@ -20,7 +21,6 @@ public class GamePlay implements Screen {
 
     private GameMain game;
     private Sprite backGround;
-
     private World world;
 
 
@@ -29,8 +29,8 @@ public class GamePlay implements Screen {
 
 
     private ElementsController elementsController;
-
     private Pipe[] pipe;
+    private Calc calc;
 
     public GamePlay(GameMain game) {
         this.game = game;
@@ -44,6 +44,7 @@ public class GamePlay implements Screen {
 
         elementsController = new ElementsController(world);
 
+        calc = new Calc();
         createPipes();
         createBackground();
 
@@ -65,6 +66,12 @@ public class GamePlay implements Screen {
             pipe[i] = new Pipe(world,"pipe"+i);
         }
 
+        pipe[1].setLength(150f);
+        pipe[2].setLength(100f);
+
+        float energyPipe1 = calc.downStreamEnergy(150,pipe[1].getLength() );
+        float energyPipe2 = calc.downStreamEnergy(energyPipe1,pipe[2].getLength());
+        System.out.println("A energia final é: "+energyPipe2+"Kpa");
     }
 
     public void drawPipe(){
